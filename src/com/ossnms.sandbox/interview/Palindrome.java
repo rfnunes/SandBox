@@ -6,17 +6,36 @@ import java.util.Objects;
 public class Palindrome {
 
     public static void main(String[] args) {
-
+/*
         Arrays.asList(0, 1, 10, 11, 1200, 1221, 33033, 33333)
               .forEach(Palindrome::printResult);
 
         Arrays.asList("010", "011", "Ana", "Carla", "Hannah")
               .forEach(Palindrome::printResult);
+*/
+        Arrays.asList("010", "011", "Ana", "Carla", "Hannah")
+              .forEach(Palindrome::printResult2);
     }
 
     private static void printResult(String word) {
         String s = String.format("%1$10s", word);
         System.out.println(s+": " + isPalindromeStringRecursive(word));
+    }
+
+    private static void printResult2(String word) {
+        String s = String.format("%1$10s", word);
+        System.out.println(s+": " + isPalindrome2(word));
+    }
+
+    private static boolean isPalindrome2(String word) {
+        word = word.toLowerCase();
+        char[] chars = word.toCharArray();
+        for (int i = 0; i <= chars.length / 2; i++) {
+            if (chars[i] != chars[chars.length-1-i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static boolean isPalindrome(String palindrome) {

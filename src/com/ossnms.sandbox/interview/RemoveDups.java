@@ -14,6 +14,7 @@ public class RemoveDups {
 
     private void go() {
         LinkedList<Integer> linkedList = LinkedList.fill(Arrays.asList(1, 1, 2, 3, 3, 5, 6, 7, 7));
+        System.out.println(linkedList);
         LinkedList<Integer> noDups = removeDups(linkedList);
         System.out.println(noDups);
     }
