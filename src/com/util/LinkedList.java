@@ -138,6 +138,33 @@ public class LinkedList<T> {
         }
     }
 
+    public LinkedListIterator<T> iterator() {
+        return new LinkedListIterator<>(head);
+    }
+
+    public static class LinkedListIterator<T> implements Iterator<LinkedListNode<T>> {
+
+        private LinkedListNode<T> nextNode;
+
+        private LinkedListNode<T> node;
+
+        public LinkedListIterator(LinkedListNode<T> node) {
+            this.node = node;
+            this.nextNode = node.next;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return nextNode != null;
+        }
+
+        @Override
+        public LinkedListNode<T> next() {
+            nextNode = node.next;
+            return node;
+        }
+    }
+
     public static <T> LinkedList<T> fill(List<T> elements) {
 
         if(elements.size() == 0) {
