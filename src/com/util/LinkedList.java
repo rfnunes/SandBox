@@ -46,6 +46,22 @@ public class LinkedList<T> {
         return newLinkedList;
     }
 
+    public static <T> LinkedList<T> reverse2(LinkedList<T> linkedList) {
+        LinkedListNode<T> head = linkedList.getHead();
+        LinkedListNode<T> current = head;
+        while (current.getNext() != null) {
+            LinkedListNode<T> next = current.getNext();
+
+            current.setNext(current.getPrevious());
+            current.setPrevious(next);
+
+            current = next;
+        }
+        linkedList.setHead(current);
+        linkedList.setTail(head);
+        return linkedList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -88,6 +104,14 @@ public class LinkedList<T> {
         sb.append("}");
 
         return sb.toString();
+    }
+
+    public void setHead(LinkedListNode<T> head) {
+        this.head = head;
+    }
+
+    public void setTail(LinkedListNode<T> tail) {
+        this.tail = tail;
     }
 
     public static class LinkedListNode<T> {
@@ -135,6 +159,11 @@ public class LinkedList<T> {
         @Override
         public int hashCode() {
             return Objects.hash(object);
+        }
+
+        @Override
+        public String toString() {
+            return object.toString();
         }
     }
 

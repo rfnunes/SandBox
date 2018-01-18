@@ -18,5 +18,6 @@ class LinkedListTest {
         Collections.reverse(expected);
         LinkedList<Integer> linkedList = LinkedList.fill(elements);
         assertEquals(LinkedList.fill(expected), LinkedList.reverse(linkedList));
+        assertEquals(LinkedList.fill(expected), LinkedList.reverse2(linkedList));
     }
 }

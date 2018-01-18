@@ -1,7 +1,10 @@
 package com.evaluation;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class BubbleSort {
 
@@ -15,7 +18,14 @@ public class BubbleSort {
         printArray(bubbleSort.sort(ints));
         printArray(bubbleSort.sort(ints));
         */
-        bubbleSort.sort(ints);
+
+        Random rSize = new Random();
+        Random rNumber = new Random();
+
+        Stream.generate(() -> rNumber.ints(0, 50).limit(rSize.nextInt(10)).toArray())
+              .peek(a -> System.out.println(Arrays.toString(a)))
+              .limit(5)
+              .forEach(intArray -> System.out.println(Arrays.toString(bubbleSort.bubbleSort(intArray))));
     }
 
     private static void printArray(int[] sort) {
@@ -29,7 +39,20 @@ public class BubbleSort {
                      .collect(Collectors.joining(", "));
     }
 
-    private int[] sort(int[] array) {
+    public int[] bubbleSort(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for(int j = 0; j < array.length - i - 1; j++) {
+                if(array[j] > array[j+1]) {
+                    int temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+        return array;
+    }
+
+    private int[] sortAlternative(int[] array) {
 
         final int n = array.length;
 
