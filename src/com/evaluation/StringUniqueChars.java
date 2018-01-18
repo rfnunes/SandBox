@@ -1,6 +1,8 @@
 package com.evaluation;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class StringUniqueChars {
 
@@ -20,7 +22,7 @@ public class StringUniqueChars {
 
         //System.out.println(getArrayString(chars));
 
-        System.out.println(areUnique2(string));
+        System.out.println(areUnique3(string));
     }
 
     private boolean areUnique(char[] chars) {
@@ -48,9 +50,21 @@ public class StringUniqueChars {
         return true;
     }
 
+    private boolean areUnique3(String string) {
+        final Set<Character> chars = new HashSet<>(string.length());
+        while(!string.isEmpty()) {
+            char c = string.charAt(0);
+            if(!chars.add(c)) {
+                return false;
+            }
+            string = string.substring(1);
+        }
+        return true;
+    }
+
     private void bubbleSort(char[] chars) {
 
-        for(int i = 0; i < chars.length - 1; i++) {
+        for(int i = 0; i < chars.length; i++) {
             for(int j = 0; j < chars.length - i - 1; j++) {
                 if(chars[j] > chars[j+1]) {
                     char temp = chars[j];
