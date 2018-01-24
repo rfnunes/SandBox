@@ -79,4 +79,71 @@ public class Permutations {
         return base.chars().mapToObj(c -> (((char) c)))
                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private List<String> getPermutations2(String s) {
+
+        if(s.length() == 2) {
+            List<String> res = new ArrayList<>(2);
+            res.add(s);
+            res.add("" + s.charAt(1) + s.charAt(0));
+        }
+
+        List<String> permutations = getPermutations(s.substring(0, s.length() - 1));
+
+        int lastChar = s.charAt(s.length() - 1);
+
+        return insertChar2(lastChar, permutations);
+    }
+
+    private List<String> insertChar2(int lastChar, List<String> permutations) {
+        List<String> res = new ArrayList<>();
+
+        for (String permutation : permutations) {
+            char[] chars = permutation.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                if(i == 0) {
+                    res.add(lastChar + permutation);
+                }
+                if(i == permutation.length()) {
+                    res.add(permutation + lastChar);
+                }
+                else {
+                    res.add(permutation.substring(0, i) + lastChar + permutation.substring(i));
+                }
+            }
+        }
+
+        return res;
+    }
 }
